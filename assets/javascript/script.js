@@ -33,6 +33,40 @@ function questions() {
   return responses;
 }
 
+//Function joins user responses and resulting in a strong password.
+function generatePassword() {
+  var passwordOptions = questions();
+  var possibleCombo = [];
+  var finalPassword = "";
+
+  if (passwordOptions.askNumbers) {
+    for (var i of numbers)
+    possibleCombo.push(i);
+  }
+  if (passwordOptions.askLowerCase) {
+    for (var i of loweCase)
+    possibleCombo.push(i);
+  }
+  if (passwordOptions.askUpperCase) {
+    for (var i of upperCase)
+    possibleCombo.push(i);
+  }
+  if (passwordOptions.askSpecialChar) {
+    for (var i of specialChar)
+    possibleCombo.push(i);
+  }
+
+  console.log(possibleCombo);
+
+  for (var i = 0; i < passwordOptions.length; i++) {
+    finalPassword += possibleCombo[Math.floor(Math.random() * possibleCombo.length)];
+  }
+
+  console.log(finalPassword);
+
+  return finalPassword;
+}
+
 // Write password to the #password input
 function writePassword() {
   var password = generatePassword();
